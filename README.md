@@ -34,3 +34,10 @@ Para empezar, un director deportivo está viajando continuamente y está muy poc
 
 **Fotografía de comprobacion de identidad**
 ![Fotografía de comprobacion de identidad](imgs/comprobacion2.png)
+
+
+## Configuración del repositorio
+
+Las evidencias y capturas de la configuración del entorno (claves SSH e identidad de Git) se encuentran aquí:
+
+* [Ver configuración del repositorio](docs/configuracion.md)
