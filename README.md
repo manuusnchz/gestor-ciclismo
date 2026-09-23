@@ -4,10 +4,14 @@
 Un director deportivo de un equipo de ciclismo debe seleccionar la plantilla de 7 corredores de entre los 20 que suele tener un equipo, de todas las carreras que el equipo tiene durante toda la temporada, y esto es un engorro ya que debe mirar la puntuacion en ranking que ha tenido cada corredor en esa carrera u otras similares otros años para saber cual será el que más puntos le sume al equipo en cada carrera para así ganar el ranking nacional a final de año.
 
 *Para quien va dirigido:*
-Para todos los directivos de equipos ciclistas de carretera, sea de la categoría que sea, quitarles horas y horas de busqueda de información de sus corredores a la hora de elegir la plantilla
+Para todos los directivos de equipos ciclistas de carretera, sea de la categoría que sea, quitarles horas y horas de busqueda de información de sus corredores a la hora de elegir la plantilla. En mi caso personal, usaré el calendario y los datos (puntos del ranking) de todos los corredores del equipo Sub23 de ciclismo de carretera Extremadura Pebetero, el cual es mi actual equipo con el que tengo una gran cercanía, tanto con deportistas, ya que son mis compañeros, como con directivos, y así será mas fácil de que me faciliten algún dato que falte, o me comenten sus preocupaciones y mejoras que creen que podría hacer en el sistema.
 
 *Que datos existen ya:*
 En la página web de la Real Federación Española de ciclismo se encuentra tanto todo el calendario nacional para el año en curso, como las puntuaciones en ranking, de 5 años anteriores de cada corredor en cada carrera.
+Los datos del ranking de años pasados se obtendrá de la URL : https://rfec.com/index.php/es/smartweb/seccion/clasificacioncircuito/rfec/carretera/ELITE-SUB23/2026/26RANKELITESUB , de donde podríamos extraerlos mediante scrapping , en formato csv para así poderlos procesar, y el calendario de carreras se buscará en https://rfec.com/index.php/es/smartweb/seccion/seccion/rfec//calendario_carretera , aunque como mi idea es enfocarlo a un equipo completo, cada equipo tiene su propio calendario cerrado, hecho en pdf a principio del año desde el cual basaríamos nuestro producto, pero siempre tenemos el calendario total en la web por si necesitamos algo más de información.
+
+*Criterios a seguir:*
+Mi idea, no es hacer algo simple como tan solo sumar puntos y convocar a los que tengan más puntos totales, sino tener en cuenta, a parte de este primer criterio que he dicho, factores como en que carreras ha sumado cada corredor los puntos, y darle un peso mayou a aquellos que lo hayan hecho en la misma carrera para la que se va a hacer la convocatoria. También se tendrá en cuenta el descanso de cada corredor, ya que cada X carreras habrá que dar a ciertos corredores descanso para que no se lesionen. También tendré en cuenta que algún corredor puede estar lesionado durante la temporada por lo que mientras dure su lesión, no se le podrá convocar.
 
 *¿Es un problema real del que tengo conocimiento personal o interés?:*
 Si, soy ciclista de carretera y todos mis directores deportivos me han expresado su preocupación por este problema y lo necesaria que sería una plataforma de este estilo.
