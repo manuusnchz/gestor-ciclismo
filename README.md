@@ -62,3 +62,16 @@ Si.
 Las evidencias y capturas de la configuración del entorno (claves SSH e identidad de Git) se encuentran aquí:
 
 * [Ver configuración del repositorio](docs/configuracion.md)
+
+
+## Estado del proyecto
+
+* **Objetivo 0**: completado (problema identificado, repositorio configurado).
+* **Objetivo 1**: planificación del proyecto — jornada de usuario, historias de
+  usuario y milestones iniciales definidos.
+
+## Documentación adicional
+
+* [Jornada de usuario](docs/user-journeys.md)
+* [Historias de usuario](docs/historias-de-usuario.md)
+* [Milestones](docs/milestones.md)
