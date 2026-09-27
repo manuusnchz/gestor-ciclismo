@@ -48,15 +48,6 @@ Si.
 **Fotografía de la tarjeta de validación**
 ![Fotografía de la tarjeta de validación](imgs/validacion.jpeg)
 
-**Pruebas de documentación**
-
-**Fotografía de comprobacion de las llaves SSH**
-![Fotografía de comprobacion de las llaves SSH](docs/comprobacion1.png)
-
-**Fotografía de comprobacion de identidad**
-![Fotografía de comprobacion de identidad](docs/comprobacion2.png)
-
-
 **Configuración del repositorio**
 
 Las evidencias y capturas de la configuración del entorno (claves SSH e identidad de Git) se encuentran aquí:
