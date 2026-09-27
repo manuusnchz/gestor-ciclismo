@@ -66,3 +66,4 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Jornada de usuario](docs/user-journeys.md)
 * [Historias de usuario](docs/historias-de-usuario.md)
 * [Milestones](docs/milestones.md)
+* [Referencia a persona](docs/personas.md)
