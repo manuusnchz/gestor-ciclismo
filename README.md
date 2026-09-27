@@ -8,7 +8,7 @@ Para todos los directivos de equipos ciclistas de carretera, sea de la categorí
 
 *Que datos existen ya:*
 En la página web de la Real Federación Española de ciclismo se encuentra tanto todo el calendario nacional para el año en curso, como las puntuaciones en ranking, de 5 años anteriores de cada corredor en cada carrera.
-Los datos del ranking de años pasados se obtendrá de la URL : https://rfec.com/index.php/es/smartweb/seccion/clasificacioncircuito/rfec/carretera/ELITE-SUB23/2026/26RANKELITESUB , de donde podríamos extraerlos mediante scrapping , en formato csv para así poderlos procesar, y el calendario de carreras se buscará en https://rfec.com/index.php/es/smartweb/seccion/seccion/rfec//calendario_carretera , aunque como mi idea es enfocarlo a un equipo completo, cada equipo tiene su propio calendario cerrado, hecho en pdf a principio del año desde el cual basaríamos nuestro producto, pero siempre tenemos el calendario total en la web por si necesitamos algo más de información. Para hacer el scrapping de estos datos, debemos hacerlo de una manera algo peculiar, debido a que desde cualquier navegador normal, está prohibido por el administrador de la web entrar en modo desarrollador, por lo que después de muchas pruebas, usando VPNs, distintos navegadores, etc, he llegado a la solución de que mediante TOR, no hay problema en entrar al modo desarrollador de la web por lo que lo haré desde ahí.
+Los datos del ranking de años pasados se obtendrá de la URL : https://rfec.com/index.php/es/smartweb/seccion/clasificacioncircuito/rfec/carretera/ELITE-SUB23/2026/26RANKELITESUB , de donde podríamos extraerlos mediante scrapping , en formato csv para así poderlos procesar, y el calendario de carreras se buscará en https://rfec.com/index.php/es/smartweb/seccion/seccion/rfec//calendario_carretera , aunque como mi idea es enfocarlo a un equipo completo, cada equipo tiene su propio calendario cerrado, hecho en pdf a principio del año desde el cual basaríamos nuestro producto, pero siempre tenemos el calendario total en la web por si necesitamos algo más de información.
 
 *Criterios a seguir:*
 Mi idea, no es hacer algo simple como tan solo sumar puntos y convocar a los que tengan más puntos totales, sino tener en cuenta, a parte de este primer criterio que he dicho, factores como en que carreras ha sumado cada corredor los puntos, y darle un peso mayou a aquellos que lo hayan hecho en la misma carrera para la que se va a hacer la convocatoria. También se tendrá en cuenta el descanso de cada corredor, ya que cada X carreras habrá que dar a ciertos corredores descanso para que no se lesionen. También tendré en cuenta que algún corredor puede estar lesionado durante la temporada por lo que mientras dure su lesión, no se le podrá convocar.
@@ -48,17 +48,22 @@ Si.
 **Fotografía de la tarjeta de validación**
 ![Fotografía de la tarjeta de validación](imgs/validacion.jpeg)
 
-**Pruebas de documentación**
-
-**Fotografía de comprobacion de las llaves SSH**
-![Fotografía de comprobacion de las llaves SSH](imgs/comprobacion1.png)
-
-**Fotografía de comprobacion de identidad**
-![Fotografía de comprobacion de identidad](imgs/comprobacion2.png)
-
-
 **Configuración del repositorio**
 
 Las evidencias y capturas de la configuración del entorno (claves SSH e identidad de Git) se encuentran aquí:
 
 * [Ver configuración del repositorio](docs/configuracion.md)
+
+
+## Estado del proyecto
+
+* **Objetivo 0**: completado (problema identificado, repositorio configurado).
+* **Objetivo 1**: planificación del proyecto — jornada de usuario, historias de
+  usuario y milestones iniciales definidos.
+
+## Documentación adicional
+
+* [Jornada de usuario](docs/user-journeys.md)
+* [Historias de usuario](docs/historias-de-usuario.md)
+* [Milestones](docs/milestones.md)
+* [Referencia a persona](docs/personas.md)
