@@ -1,4 +1,4 @@
-Milestone 0: Histórico de puntuación consultable
+Milestone 0: Histórico de puntuación consultable en la nube
 
 Se entrega un PMV que permite consultar el histórico de puntuación de cada corredor de la plantilla, reunido en un único sitio.
 El objetivo resolver que Alfonso ya no tenga que rebuscar entre hojas de cálculo de distintos años para valorar a un corredor.
