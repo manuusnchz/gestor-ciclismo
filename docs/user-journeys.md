@@ -11,5 +11,5 @@ Lo único que hace es actualizar dos datos mínimos sobre la plantilla: marca co
 
 Selecciona la carrera del sábado y pulsa para generar la convocatoria. La aplicación, usando los puntos históricos que ya tiene guardados de cada corredor en esa carrera y en carreras similares de años anteriores, y descartando automáticamente a los lesionados y a quien tiene descanso asignado, calcula y le devuelve directamente los 7 corredores que forman la alineación.
 Alfonso revisa la lista propuesta, la encuentra razonable y la confirma como convocatoria oficial.
-Gracias a esto, Alfonso ha pasado de dedicar horas a cruzar notas, mensajes de WhatsApp y hojas de cálculo, a marcar dos datos y recibir la convocatoria ya decidida en segundos, incluso viajando fuera de casa.
+Gracias a esto, Alfonso ha pasado de dedicar horas a cruzar notas, mensajes de WhatsApp y consultas a la web, a marcar dos datos y recibir la convocatoria ya decidida en segundos, incluso viajando fuera de casa.
 
