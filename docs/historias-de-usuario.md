@@ -1,6 +1,6 @@
 [HU001] Histórico de puntuación disperso en varias páginas
 
-Como director deportivo, Alfonso no tiene en un único sitio el histórico de puntuación de cada corredor por carrera de años anteriores, está repartido en distintas URLs, una por año. Por eso, cada vez que quiere valorar a un corredor para una carrera concreta, tiene que rebuscar manualmente entre varias páginas.
+Como director deportivo, Alfonso no tiene en un único sitio el histórico de puntuación de cada corredor por carrera de años anteriores, está repartido en distintas URLs, una por año. Por eso, cada vez que quiere valorar a un corredor para una carrera concreta, tiene que rebuscar manualmente entre varias páginas, dentro del apartado del ranking nacional de la web de la RFEC el cual es: https://rfec.com/index.php/es/smartweb/seccion/clasificacioncircuito/rfec/carretera/ELITE-SUB23/2026/26RANKELITESUB/5579-SUB-23
 
 
 [HU002] Decisión de convocatoria basada en cruzar datos a mano
