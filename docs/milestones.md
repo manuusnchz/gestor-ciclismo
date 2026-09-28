@@ -1,7 +1,7 @@
 Milestone 0: Histórico de puntuación consultable en la nube
 
 Se entrega un PMV que permite consultar el histórico de puntuación de cada corredor de la plantilla, reunido en un único sitio.
-El objetivo es resolver que Alfonso ya no tenga que rebuscar entre hojas de cálculo de distintos años para valorar a un corredor.
+El objetivo es resolver que Alfonso ya no tenga que rebuscar en la web de la RFEC en distintos links para valorar a un corredor.
 Sabemos que es válido ya que dado un corredor conocido, se puede consultar su puntuación histórica por carrera y por año; para un corredor sin datos, se indica claramente que no hay histórico (no falla ni da un dato inventado).
 
 Milestone 1: Alineación automática de convocatoria
