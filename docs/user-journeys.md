@@ -1,4 +1,4 @@
-#User Journey
+# User Journey
 
 Nota: Esta jornada describe el uso completo de la aplicación una vez desarrollada. La generación automática de la alineación mediante algoritmo, así como la ponderación por carreras similares o lesión y disponibilidad de corredores  pueden corresponder a milestones posteriores al inicial.
 
