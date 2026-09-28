@@ -1,6 +1,6 @@
 Milestone 0: Modelado del problema
 
-Se entrega un PMV interno que consiste en usar Domain Driven Design para construir un lenguaje ubicuo, un vocabulario común que entiendan igual el cliente (Alfonso) y el desarrollador. El lenguaje es parte del problema y se va complementando a medida que se van abordando las historias de usuario, una a una y en orden. Todavía no hace nada, solo deja preparadas las estructuras de datos que se van a necesitar para programar la lógica del proyecto en el siguiente milestone. Se entrega como código dentro del repositorio, y con un documento en docs/ donde se explica cómo se ha analizado el problema.
+Se entrega un PMV interno que consiste en usar Domain Driven Design para construir un lenguaje ubicuo, un vocabulario común que entiendan igual el cliente (Alfonso) y el desarrollador. En este milestone se trabaja únicamente con la primera historia de usuario, HU001, y el lenguaje se construye a partir de los conceptos que aparecen en ella. Todavía no hace nada, solo deja preparadas las estructuras de datos que se van a necesitar para programar la lógica del proyecto en el siguiente milestone. Se entrega como código dentro del repositorio, y con un documento en docs/ donde se explica cómo se ha analizado el problema.
 
 Sabemos que es válido ya que en ese documento se ve que se ha aplicado la metodología sobre las historias de usuario, qué conceptos salen de ellas y qué se decide hacer con cada uno, y que todo lo que hay en el código viene de ese análisis y no de lo que se me haya ocurrido por mi cuenta.
 
