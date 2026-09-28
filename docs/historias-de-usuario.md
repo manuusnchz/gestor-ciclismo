@@ -5,4 +5,4 @@ Como director deportivo, Alfonso no tiene en un único sitio el histórico de pu
 
 [HU002] Decisión de convocatoria basada en cruzar datos a mano
 
-Alfonso, director deportivo, no tiene forma de saber directamente qué 7 corredores debería convocar para una carrera concreta, teniendo en cuenta su rendimiento histórico y su disponibilidad actual (lesión o descanso). Hoy en día tiene que cruzar a mano los datos de puntos con lo que recuerda o le han dicho por WhatsApp sobre el estado físico de cada uno, lo que le lleva horas cada semana.
+Alfonso, director deportivo, no tiene forma de saber directamente qué 7 corredores debería convocar para una carrera concreta, teniendo en cuenta los puntos obtenidos en años anteriores y su disponibilidad actual (lesión o descanso). Hoy en día tiene que cruzar a mano los datos de puntos con lo que recuerda o le han dicho por WhatsApp sobre el estado físico de cada uno, lo que le lleva horas cada semana.
