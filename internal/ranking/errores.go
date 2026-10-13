@@ -12,11 +12,10 @@ func (e ErrorPuntosNegativos) Error() string {
 
 type ErrorNombreInvalido struct {
 	Motivo string
-	Texto  string
 }
 
 func (e ErrorNombreInvalido) Error() string {
-	return fmt.Sprintf("nombre inválido (%s): %q", e.Motivo, e.Texto)
+	return fmt.Sprintf("nombre inválido: %s", e.Motivo)
 }
 
 type ErrorTemporadaInvalida struct {
