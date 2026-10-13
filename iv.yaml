@@ -1,2 +1,2 @@
 lenguaje: go
-entidad: dominio/carrera.go
+entidad: internal/ranking/carrera.go

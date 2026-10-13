@@ -1,4 +1,4 @@
-package dominio
+package ranking
 
 type Resultado struct {
 	participo bool

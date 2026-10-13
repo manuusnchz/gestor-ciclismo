@@ -1,4 +1,4 @@
-package dominio
+package ranking
 
 type Edicion struct {
 	NombrePublicado string

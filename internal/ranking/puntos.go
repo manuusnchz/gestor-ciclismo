@@ -1,4 +1,4 @@
-package dominio
+package ranking
 
 type Puntos struct {
 	valor int
