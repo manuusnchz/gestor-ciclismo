@@ -67,3 +67,9 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Historias de usuario](docs/historias-de-usuario.md)
 * [Milestones](docs/milestones.md)
 * [Referencia a persona](docs/personas.md)
+
+## Dependencias
+
+El proyecto usa los módulos de Go: el módulo, sus dependencias y la versión
+de Go se declaran en [`go.mod`](go.mod). La justificación de esta elección
+está en [docs/herramientas.md](docs/herramientas.md).
