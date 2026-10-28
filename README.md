@@ -84,9 +84,17 @@ make. Por qué se ha elegido make está explicado también en
 
     sudo apt install make
 
+La entidad del proyecto es `Carrera`, en
+[`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una
+carrera por su nombre y, de cada año que se ha corrido, los puntos que sacó
+cada corredor o si no participó. Es de donde el servicio sacará el
+rendimiento de cada corredor en esa carrera para ayudar a Alfonso a
+elegir la plantilla.
+
 Para comprobar que el código compila:
 
     make check
 
-Esta orden solo ejecuta `go build ./...`, por lo que no pasa tests, ni
+Esta orden solo ejecuta `go build ./...`, que comprueba que compilan
+todos los fuentes, incluida la entidad, por lo que no pasa tests, ni
 linter, ni mira el formato.
