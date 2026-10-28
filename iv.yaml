@@ -1,2 +1,5 @@
 lenguaje: go
 entidad: internal/ranking/carrera.go
+automatizar:
+  fichero: Makefile
+  orden: make

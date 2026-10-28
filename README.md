@@ -58,8 +58,10 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 ## Estado del proyecto
 
 * **Objetivo 0**: completado (problema identificado, repositorio configurado).
-* **Objetivo 1**: planificación del proyecto — jornada de usuario, historias de
-  usuario y milestones iniciales definidos.
+* **Objetivo 1**: completado (jornada de usuario, historias de usuario y
+  milestones iniciales definidos).
+* **Objetivo 2**: completado (modelo de HU001 en Go).
+* **Objetivo 3**: automatización de tareas con make y los módulos de Go.
 
 ## Documentación adicional
 
@@ -73,3 +75,18 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 El proyecto usa los módulos de Go: el módulo, sus dependencias y la versión
 de Go se declaran en [`go.mod`](go.mod). La justificación de esta elección
 está en [docs/herramientas.md](docs/herramientas.md).
+
+## Gestor de tareas
+
+Las tareas del proyecto están en el [`Makefile`](Makefile) y se lanzan con
+make. Por qué se ha elegido make está explicado también en
+[docs/herramientas.md](docs/herramientas.md). Si no lo tienes instalado:
+
+    sudo apt install make
+
+Para comprobar que el código compila:
+
+    make check
+
+Esta orden solo ejecuta `go build ./...`, por lo que no pasa tests, ni
+linter, ni mira el formato.
