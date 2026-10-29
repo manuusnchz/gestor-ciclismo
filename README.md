@@ -93,9 +93,26 @@ se compila, así que la versión está en un único sitio, como se habló en #6.
 
 ## Gestor de tareas
 
-Las tareas del proyecto están en el [`Makefile`](Makefile) y se lanzan con
-make. Por qué se ha elegido make está explicado también en
-[docs/herramientas.md](docs/herramientas.md). Si no lo tienes instalado:
+`go` no tiene ningún fichero donde poner las tareas ni una orden `check`, así
+que hay que acordarse de cada orden y escribirla a mano (#24). Las tareas
+son pocas (instalar, comprobar que compila y más adelante los tests) y todas
+lanzan una orden de `go`.
+
+Criterios: que no añada dependencias al proyecto, que siga mantenido y que
+el fichero de tareas no dependa de un programa concreto.
+
+| Opción         | Añade dependencias a `go.mod` | Mantenido        | Fichero estándar             |
+|----------------|-------------------------------|------------------|------------------------------|
+| make           | No                            | Sí (4.4.1, 2023) | Sí, POSIX ([IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)) |
+| Task           | No                            | Sí (v3.54.0)     | No, `Taskfile.yml` propio    |
+| just           | No                            | Sí (1.59.0)      | No, `justfile` propio        |
+| Mage           | Sí, tareas escritas en Go     | Sí               | No                           |
+| goyek          | Sí, tareas escritas en Go     | Sí               | No                           |
+| Earthly        | No                            | No               | No, `Earthfile` propio       |
+| Bazel / Please | No                            | Sí               | No, ficheros `BUILD` propios |
+
+make es la única opción que cumple los tres criterios. Las tareas están en
+el [`Makefile`](Makefile). Si no lo tienes instalado:
 
     sudo apt install make
 
