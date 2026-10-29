@@ -58,8 +58,10 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 ## Estado del proyecto
 
 * **Objetivo 0**: completado (problema identificado, repositorio configurado).
-* **Objetivo 1**: planificación del proyecto — jornada de usuario, historias de
-  usuario y milestones iniciales definidos.
+* **Objetivo 1**: completado (jornada de usuario, historias de usuario y
+  milestones iniciales definidos).
+* **Objetivo 2**: completado (modelo de HU001 en Go).
+* **Objetivo 3**: automatización de tareas con make y los módulos de Go.
 
 ## Documentación adicional
 
@@ -67,3 +69,84 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Historias de usuario](docs/historias-de-usuario.md)
 * [Milestones](docs/milestones.md)
 * [Referencia a persona](docs/personas.md)
+
+## Gestor de dependencias
+
+El repositorio no tenía nada que dijera qué hace falta para compilar el
+código: ni el módulo, ni las dependencias, ni la versión de Go (#23).
+
+Criterios: que siga mantenido y que no haya que instalar nada aparte de Go,
+ya que el proyecto solo usa la biblioteca estándar.
+
+| Opción        | Tipo                                          | Mantenido                      | Instalación aparte de Go |
+|---------------|-----------------------------------------------|--------------------------------|--------------------------|
+| Módulos de Go | Gestor oficial, integrado en `go`             | Sí                             | No, viene con Go         |
+| dep           | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| glide         | Gestor externo anterior a los módulos         | No, obsoleto                   | Sí                       |
+| govendor      | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| godep         | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| Modo GOPATH   | Forma de organizar el código, sin versiones   | No, sustituido por los módulos | No                       |
+
+No hay ninguna alternativa vigente a los módulos. Las demás aparecen porque
+son todas las que ha habido en Go, y todas quedaron obsoletas cuando los
+módulos pasaron a estar activos por defecto en Go 1.16.
+
+Los módulos de Go son la única opción que cumple los dos criterios. El
+fichero [`go.mod`](go.mod) declara la ruta del módulo, la versión mínima de
+Go con la que se compila y las dependencias, que descarga y fija la propia
+orden `go`. Ahora no hay ninguna porque el proyecto solo usa la biblioteca
+estándar, pero si hace falta alguna se añade ahí. La versión de Go queda así
+en un único sitio, como se habló en #6.
+
+## Gestor de tareas
+
+`go` no tiene ningún fichero donde poner las tareas ni una orden `check`, así
+que hay que acordarse de cada orden y escribirla a mano (#24). Las tareas
+son pocas (instalar, comprobar que compila y más adelante los tests) y todas
+lanzan una orden de `go`.
+
+Criterios: que no añada dependencias al módulo, porque ahora no tiene
+ninguna y cada una que entra hay que mantenerla al día; que siga mantenido
+o esté estandarizado, para que el fichero no se quede sin soporte; y que el
+fichero de tareas no dependa de un programa concreto.
+
+| Opción         | Añade dependencias a `go.mod` | Mantenido        | Fichero estándar             |
+|----------------|-------------------------------|------------------|------------------------------|
+| make           | No                            | Estable: última versión 4.4.1 (2023), pero lo define POSIX | Sí, POSIX ([IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)) |
+| Task           | No                            | Sí (v3.54.0)     | No, `Taskfile.yml` propio    |
+| just           | No                            | Sí (1.59.0)      | No, `justfile` propio        |
+| Mage           | Sí si se usa su paquete `mg`; si no, hay que instalar `mage` aparte | Sí | No, `magefile.go` solo lo entiende `mage` |
+| goyek          | Sí, es una biblioteca que hay que importar | Sí  | No, es un programa Go propio |
+| Earthly (sistema de construcción)        | No | No, ya no se mantiene activamente | No, `Earthfile` propio       |
+| Bazel / Please (sistemas de construcción) | No | Sí                                | No, ficheros `BUILD` propios |
+
+Earthly, Bazel y Please no son gestores de tareas, sino sistemas de
+construcción pensados para proyectos grandes y con varios lenguajes. Para
+dos tareas que solo lanzan una orden de `go` serían sobreingeniería, y
+además ninguno cumple el tercer criterio.
+
+make es la única opción que cumple los tres criterios. No saca versiones
+desde 2023, pero el [`Makefile`](Makefile) solo usa lo que define POSIX, así
+que funciona con cualquier make y no depende de versiones nuevas. Si no lo
+tienes instalado:
+
+* Debian/Ubuntu: `sudo apt install make`
+* Fedora: `sudo dnf install make`
+* macOS: `xcode-select --install` (lo trae con las herramientas de línea de órdenes)
+* Windows: dentro de WSL, igual que en Linux, o `choco install make`
+
+La entidad del proyecto es `Carrera`, en
+[`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una
+carrera por su nombre y, de cada año que se ha corrido, los puntos que sacó
+cada corredor o si no participó. Es de donde el servicio sacará el
+rendimiento de cada corredor en esa carrera para ayudar a Alfonso a
+elegir la plantilla.
+
+Para comprobar que el código compila:
+
+    make check
+
+Esta orden solo ejecuta `go build ./...`, que compila todos los paquetes
+del módulo, incluida la entidad. No compila los ficheros `_test.go` (ahora
+no hay ninguno), no pasa tests, ni linter, ni mira el formato. Los tests
+irán en su propia tarea cuando los haya.
