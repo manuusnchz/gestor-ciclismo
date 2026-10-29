@@ -72,9 +72,24 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 
 ## Dependencias
 
-El proyecto usa los módulos de Go: el módulo, sus dependencias y la versión
-de Go se declaran en [`go.mod`](go.mod). La justificación de esta elección
-está en [docs/herramientas.md](docs/herramientas.md).
+El repositorio no tenía nada que dijera qué hace falta para compilar el
+código: ni el módulo, ni las dependencias, ni la versión de Go (#23).
+
+Criterios: que siga mantenido y que no haya que instalar nada aparte de Go,
+ya que el proyecto solo usa la biblioteca estándar.
+
+| Opción        | Mantenido                      | Instalación aparte de Go |
+|---------------|--------------------------------|--------------------------|
+| Módulos de Go | Sí                             | No, viene con Go         |
+| dep           | No, archivado                  | Sí                       |
+| glide         | No, obsoleto                   | Sí                       |
+| govendor      | No, obsoleto                   | Sí                       |
+| godep         | No, archivado                  | Sí                       |
+| Modo GOPATH   | No, sustituido por los módulos | No                       |
+
+Los módulos de Go son la única opción que cumple los dos criterios. El
+fichero [`go.mod`](go.mod) declara el módulo y la versión de Go con la que
+se compila, así que la versión está en un único sitio, como se habló en #6.
 
 ## Gestor de tareas
 
