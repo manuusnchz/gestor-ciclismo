@@ -70,7 +70,7 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Milestones](docs/milestones.md)
 * [Referencia a persona](docs/personas.md)
 
-## Dependencias
+## Gestor de dependencias
 
 El repositorio no tenía nada que dijera qué hace falta para compilar el
 código: ni el módulo, ni las dependencias, ni la versión de Go (#23).
@@ -78,18 +78,25 @@ código: ni el módulo, ni las dependencias, ni la versión de Go (#23).
 Criterios: que siga mantenido y que no haya que instalar nada aparte de Go,
 ya que el proyecto solo usa la biblioteca estándar.
 
-| Opción        | Mantenido                      | Instalación aparte de Go |
-|---------------|--------------------------------|--------------------------|
-| Módulos de Go | Sí                             | No, viene con Go         |
-| dep           | No, archivado                  | Sí                       |
-| glide         | No, obsoleto                   | Sí                       |
-| govendor      | No, obsoleto                   | Sí                       |
-| godep         | No, archivado                  | Sí                       |
-| Modo GOPATH   | No, sustituido por los módulos | No                       |
+| Opción        | Tipo                                          | Mantenido                      | Instalación aparte de Go |
+|---------------|-----------------------------------------------|--------------------------------|--------------------------|
+| Módulos de Go | Gestor oficial, integrado en `go`             | Sí                             | No, viene con Go         |
+| dep           | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| glide         | Gestor externo anterior a los módulos         | No, obsoleto                   | Sí                       |
+| govendor      | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| godep         | Gestor externo anterior a los módulos         | No, archivado                  | Sí                       |
+| Modo GOPATH   | Forma de organizar el código, sin versiones   | No, sustituido por los módulos | No                       |
+
+No hay ninguna alternativa vigente a los módulos. Las demás aparecen porque
+son todas las que ha habido en Go, y todas quedaron obsoletas cuando los
+módulos pasaron a estar activos por defecto en Go 1.16.
 
 Los módulos de Go son la única opción que cumple los dos criterios. El
-fichero [`go.mod`](go.mod) declara el módulo y la versión de Go con la que
-se compila, así que la versión está en un único sitio, como se habló en #6.
+fichero [`go.mod`](go.mod) declara la ruta del módulo, la versión mínima de
+Go con la que se compila y las dependencias, que descarga y fija la propia
+orden `go`. Ahora no hay ninguna porque el proyecto solo usa la biblioteca
+estándar, pero si hace falta alguna se añade ahí. La versión de Go queda así
+en un único sitio, como se habló en #6.
 
 ## Gestor de tareas
 
