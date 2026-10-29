@@ -105,23 +105,35 @@ que hay que acordarse de cada orden y escribirla a mano (#24). Las tareas
 son pocas (instalar, comprobar que compila y más adelante los tests) y todas
 lanzan una orden de `go`.
 
-Criterios: que no añada dependencias al proyecto, que siga mantenido y que
-el fichero de tareas no dependa de un programa concreto.
+Criterios: que no añada dependencias al módulo, porque ahora no tiene
+ninguna y cada una que entra hay que mantenerla al día; que siga mantenido
+o esté estandarizado, para que el fichero no se quede sin soporte; y que el
+fichero de tareas no dependa de un programa concreto.
 
 | Opción         | Añade dependencias a `go.mod` | Mantenido        | Fichero estándar             |
 |----------------|-------------------------------|------------------|------------------------------|
-| make           | No                            | Sí (4.4.1, 2023) | Sí, POSIX ([IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)) |
+| make           | No                            | Estable: última versión 4.4.1 (2023), pero lo define POSIX | Sí, POSIX ([IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)) |
 | Task           | No                            | Sí (v3.54.0)     | No, `Taskfile.yml` propio    |
 | just           | No                            | Sí (1.59.0)      | No, `justfile` propio        |
-| Mage           | Sí, tareas escritas en Go     | Sí               | No                           |
-| goyek          | Sí, tareas escritas en Go     | Sí               | No                           |
-| Earthly        | No                            | No               | No, `Earthfile` propio       |
-| Bazel / Please | No                            | Sí               | No, ficheros `BUILD` propios |
+| Mage           | Sí si se usa su paquete `mg`; si no, hay que instalar `mage` aparte | Sí | No, `magefile.go` solo lo entiende `mage` |
+| goyek          | Sí, es una biblioteca que hay que importar | Sí  | No, es un programa Go propio |
+| Earthly (sistema de construcción)        | No | No, ya no se mantiene activamente | No, `Earthfile` propio       |
+| Bazel / Please (sistemas de construcción) | No | Sí                                | No, ficheros `BUILD` propios |
 
-make es la única opción que cumple los tres criterios. Las tareas están en
-el [`Makefile`](Makefile). Si no lo tienes instalado:
+Earthly, Bazel y Please no son gestores de tareas, sino sistemas de
+construcción pensados para proyectos grandes y con varios lenguajes. Para
+dos tareas que solo lanzan una orden de `go` serían sobreingeniería, y
+además ninguno cumple el tercer criterio.
 
-    sudo apt install make
+make es la única opción que cumple los tres criterios. No saca versiones
+desde 2023, pero el [`Makefile`](Makefile) solo usa lo que define POSIX, así
+que funciona con cualquier make y no depende de versiones nuevas. Si no lo
+tienes instalado:
+
+* Debian/Ubuntu: `sudo apt install make`
+* Fedora: `sudo dnf install make`
+* macOS: `xcode-select --install` (lo trae con las herramientas de línea de órdenes)
+* Windows: dentro de WSL, igual que en Linux, o `choco install make`
 
 La entidad del proyecto es `Carrera`, en
 [`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una
@@ -134,6 +146,7 @@ Para comprobar que el código compila:
 
     make check
 
-Esta orden solo ejecuta `go build ./...`, que comprueba que compilan
-todos los fuentes, incluida la entidad, por lo que no pasa tests, ni
-linter, ni mira el formato.
+Esta orden solo ejecuta `go build ./...`, que compila todos los paquetes
+del módulo, incluida la entidad. No compila los ficheros `_test.go` (ahora
+no hay ninguno), no pasa tests, ni linter, ni mira el formato. Los tests
+irán en su propia tarea cuando los haya.
