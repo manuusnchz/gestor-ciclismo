@@ -21,3 +21,7 @@ Para comprobarlo he usado un contenedor Docker con la imagen oficial de Go, con 
 ![go version, go list -m all y go mod verify](../imgs/prueba2.png)
 
 Ahora mismo instalar las dependencias no cuesta prácticamente nada (unos 0,007 s), porque el proyecto solo usa la biblioteca estándar y no tiene ninguna dependencia externa. Tampoco ha hecho falta instalar nada aparte de Go: en el contenedor solo estaba la imagen oficial de Go y todo ha funcionado. Por eso la tarea `install` (`go mod download`) hoy no hace nada; empezará a descargar algo cuando se añada alguna dependencia a `go.mod`.
+
+### Decision final
+
+Como `go` trabaja con los módulos de Go por defecto desde la versión 1.16, lo más correcto es usarlos y no hacer cambios innecesarios, así que elijo los módulos de Go como gestor de dependencias.
