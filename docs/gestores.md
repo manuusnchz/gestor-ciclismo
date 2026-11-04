@@ -1,0 +1,7 @@
+# Herramientas de automatización
+
+## Gestor de dependencias
+
+Según la web oficial de Go, en las notas de Go 1.16 (https://go.dev/doc/go1.16#modules), desde Go 1.16 `go` trabaja con los módulos de Go por defecto. Además, en la referencia de los módulos (https://go.dev/ref/mod) se ve que el fichero `go.mod` guarda la ruta del módulo, la versión de Go y las dependencias, por lo que la versión de Go queda en un único sitio. Por otro lado, no hay que instalar nada aparte, ya que viene dentro de `go`. Esto es simplemente una facilidad y no es lo que me hace decidirme, pero lo compruebo en la prueba.
+
+Otras opciones usadas anteriormente son dep (https://github.com/golang/dep), que está archivado desde 2020; glide (https://github.com/Masterminds/glide), que en su README pone textualmente "The Go community is now using Go Modules to handle dependencies. Please consider using that instead of Glide. Glide is now mostly unmaintained."; govendor (https://github.com/kardianos/govendor), que está archivado y aparte en su README pone "Use Go modules"; y godep (https://github.com/tools/godep), que también está archivado. También está el modo GOPATH, que según la documentación de `go` (https://pkg.go.dev/cmd/go) sigue existiendo como modo heredado (con `GO111MODULE=off`), pero no gestiona versiones y no es el modo por defecto. Por eso no hago la prueba con ninguna de ellas: están archivadas, indican directamente que se usen los módulos de Go o, en el caso del modo GOPATH, no gestionan versiones.
