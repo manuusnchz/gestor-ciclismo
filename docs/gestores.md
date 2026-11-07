@@ -106,3 +106,27 @@ Por último he borrado ese fichero y he creado otro con un error de tipos, una f
 
 ![gofmt con un error de tipos](../imgs/check-tipos.png)
 
+### Pruebas
+
+Todas las pruebas las hago igual: en un contenedor limpio con la imagen oficial de Go (`golang:1.27.3`) copio el repositorio, instalo la herramienta midiendo con `time` lo que tarda, creo su fichero de tareas con `install` (`go mod download`) y `check` (`gofmt -e -l .`), lanzo las dos tareas y compruebo con `cmp` que `go.mod` no ha cambiado.
+
+Para instalar cada herramienta uso el método que recomienda su documentación oficial para una máquina nueva, y en cada prueba indico dónde lo he encontrado. Algunas se pueden instalar de varias formas, por ejemplo descargando el programa ya compilado o compilándolo con `go install`, y cada forma tarda un tiempo muy distinto, así que si usara métodos diferentes según me conviniera la comparación no sería justa.
+
+Para preparar las pruebas me he ayudado IA generativa, que me ha ayudado a generar el fichero de tareas de cada herramienta y algunas de las órdenes para instalarlas dentro del contenedor. En las pruebas de instalación he lanzado todas las órdenes de una vez, dentro de un único `docker run`, para que en la captura se vea completo lo que he hecho: la orden con la que instalo la herramienta, el fichero de tareas que creo, las tareas que lanzo y la comprobación de `go.mod`, junto con su resultado.
+
+Además de la instalación, mido lo que tarda cada herramienta en ejecutar la tarea `check`, porque en Docker y en la integración continua no solo se instala la herramienta, sino que también se lanzan las tareas cada vez. Para cada herramienta abro otro contenedor limpio, la instalo, creo su fichero de tareas y lanzo `time` con la tarea `check` tres veces seguidas. La primera es la que cuenta en una máquina limpia, y las otras dos sirven para ver si el tiempo se repite.
+
+Antes de eso he medido lo mismo sin ninguna herramienta, lanzando `gofmt -e -l .` directamente, para tener un tiempo base con el que comparar: lo que tarde cada herramienta por encima de ese tiempo es lo que añade ella. Las tres ejecuciones han tardado 0,019 s, 0,006 s y 0,009 s.
+
+![Tiempo base de check sin herramienta](../imgs/ejecucion-base.png)
+
+#### make
+
+make ya viene instalado en la imagen oficial de Go, así que no hay que instalar nada aparte. He creado un Makefile con las tareas `install` y `check`, las dos se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que make cumple los dos primeros criterios y no cuesta nada tenerlo funcionando. 
+
+![Prueba de make](../imgs/prueba-make.png)
+
+Para medir la ejecución he lanzado `make -f Makefile.prueba check` tres veces en otro contenedor limpio, y ha tardado 0,012 s, 0,010 s y 0,011 s, prácticamente lo mismo que lanzar `gofmt` directamente, así que make no añade casi nada al ejecutar la tarea.
+
+![Ejecución de check con make](../imgs/ejecucion-make.png)
+
