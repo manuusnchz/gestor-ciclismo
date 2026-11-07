@@ -41,3 +41,7 @@ Para medir el coste de instalación y el de ejecución he usado un contenedor Do
 ![Tiempos de go mod download](../imgs/prueba1.png)
 
 Ahora mismo instalar las dependencias no cuesta prácticamente nada porque el proyecto solo usa la biblioteca estándar. Este tiempo cambiará cuando se añada alguna dependencia a `go.mod`.
+
+### Decisión final
+
+Los módulos de Go son la única herramienta que cumple los dos criterios obligatorios: son el estándar de Go y funcionan con la versión del proyecto. Además, no hay que instalar nada aparte de Go y ahora mismo instalar las dependencias tarda unos 0,007 s. Por eso elijo los módulos de Go como gestor de dependencias.
