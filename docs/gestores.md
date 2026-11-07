@@ -188,3 +188,9 @@ Para medir la ejecución he lanzado `xc -f tareas.md check` tres veces en otro c
 
 ![Ejecución de check con xc](../imgs/ejecucion-xc.png)
 
+#### goyek
+
+goyek (https://github.com/goyek/goyek) no es un programa que se instale, sino una biblioteca de Go: las tareas se escriben en Go en una carpeta `build/` que importa goyek, y se lanzan con `go run`. He seguido los pasos de su README: he creado `build/main.go` con las tareas `install` y `check` y he ejecutado `go mod tidy`, que es lo que hace de instalación y ha tardado 2,794 s. Las dos tareas se han ejecutado correctamente, pero `go mod tidy` ha añadido a `go.mod` dos dependencias directas, `github.com/goyek/goyek/v3` y `github.com/goyek/x`, y otras indirectas que estas necesitan. Como no cumple el segundo criterio, goyek queda descartado.
+
+![Prueba de goyek](../imgs/prueba-goyek.png)
+
