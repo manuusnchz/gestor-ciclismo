@@ -45,3 +45,64 @@ Ahora mismo instalar las dependencias no cuesta prácticamente nada porque el pr
 ### Decisión final
 
 Los módulos de Go son la única herramienta que cumple los dos criterios obligatorios: son el estándar de Go y funcionan con la versión del proyecto. Además, no hay que instalar nada aparte de Go y ahora mismo instalar las dependencias tarda unos 0,007 s. Por eso elijo los módulos de Go como gestor de dependencias.
+
+## Gestor de tareas
+
+### Criterios
+
+Sigo los mismos criterios generales del guion que para el gestor de dependencias. Los dos primeros son obligatorios; entre las herramientas que los cumplan, deciden la deuda técnica y lo que cuesta tenerlas funcionando:
+
+1. **Fichero de tareas**: que tenga un fichero donde estén escritas las tareas del proyecto y desde el que se puedan lanzar al menos `install` y `check`.
+2. **Sin dependencias nuevas**: que no añada dependencias a `go.mod`, porque ahora no tiene ninguna y cada una que entra hay que mantenerla. Lo compruebo mirando si `go.mod` cambia después de usarla.
+3. **Estándar**: el guion dice que "Si hay un estándar, primero hay que conocerlo; a continuación simplemente hay que seguirlo". El estándar de Go es `go`, así que es lo primero que compruebo. Si no cumple los criterios obligatorios, no hay un estándar que seguir y deciden los criterios 4 y 5.
+4. **Deuda técnica**: según el guion, "si elegimos una herramienta que no se mantiene con asiduidad estaremos aumentando la deuda técnica", porque más adelante habría que cambiarla. Lo compruebo mirando si su repositorio ha tenido algún commit en el último año.
+5. **Coste de instalación y de ejecución**: qué hay que instalar aparte de Go, cuánto tarda y cuánto tarda después en lanzar `check`.
+
+
+### Opciones
+
+Para buscar las opciones he buscado en "Build Automation" dentro del repo awesome-go (https://github.com/avelino/awesome-go#build-automation), que es la lista que mantiene la comunidad de Go con las herramientas de cada categoría, y he mirado el repositorio de cada una de las que aparecen. A esas les he sumado just (https://github.com/casey/just), que no aparece en la lista porque no está escrita en Go, pero sirve para cualquier lenguaje, y make.
+
+El estándar del propio lenguaje es `go`. En el link que se deja en el guión (https://jj.github.io/curso-tdd/temas/gestores-tareas.html) se explica que "Go es un ejemplo de lenguaje que usa task runner implícito: como subcomandos de go se compila, se pasan tests o se instala un paquete". Por el criterio del estándar, es lo primero que compruebo: si con `go` bastara, no haría falta añadir nada al proyecto.
+
+Antes de hacer pruebas, descarto las opciones que no cumplen algún criterio de los antes definidos:
+
+- air (https://github.com/air-verse/air), anko (https://github.com/GuilhermeCaruso/anko), gaper (https://github.com/maxcnunes/gaper) y realize (https://github.com/oxequa/realize) no cumplen el criterio 1. Según la descripción de sus repositorios, vigilan los ficheros y vuelven a compilar o reiniciar la aplicación cuando cambian por lo que sirven para recargar la aplicación mientras se desarrolla, no para escribir tareas como `install` o `check` en un fichero y lanzarlas.
+- gob (https://github.com/kcmvp/gob), que es el repositorio que aparece en awesome-go, ya no existe, así que no se puede usar.
+- mmake (https://github.com/tj/mmake) y gilbert (https://github.com/go-gilbert/gilbert) no cumplen el criterio 4: mmake no tiene ningún commit desde marzo de 2020, y gilbert no tiene ninguno desde enero de 2025. Si eligiera cualquiera de las dos, generaria deuda técnica.
+
+Pruebo el resto que si cumplen los criterios a priori: make, Task, just, Mage, 1build, taskctl, xc, goyek y rex. Antes de eso, compruebo si con `go` solo es suficiente.
+
+### `go` solo
+
+Para comprobar si `go`, el estándar del lenguaje, cumple el criterio 1, he ejecutado `go help` en un contenedor con la imagen oficial de Go, que muestra todos los subcomandos de `go`. Al revisarlos no he encontrado ninguno que lea un fichero de tareas: `go` solo ejecuta las tareas que trae de fábrica, como `build`, `test` o `vet`, y no se pueden añadir tareas propias con el nombre que yo quiera.
+
+![Subcomandos de go help](../imgs/go-help.png)
+
+Por si acaso, he intentado ejecutar también `go check`, y me da el error "go check: unknown command" por lo que tampoco existe la tarea `check` que necesito.
+
+![Error de go check](../imgs/go-check.png)
+
+Como `go` no tiene un fichero donde estén escritas las tareas del proyecto ni permite lanzar `check`, no cumple el criterio 1 y queda descartado.
+
+
+### Qué hace la tarea `check`
+
+Antes de probar las herramientas he decidido qué orden va a lanzar la tarea `check`, porque va a ser la misma en todas las pruebas. Esta tarea tiene que comprobar que la sintaxis de los fuentes es correcta y solo eso, así que no me sirve `go build`, que es lo que tenía antes: compila el código y tiene efectos secundarios, porque genera resultados de la compilación.
+
+He elegido `gofmt -e -l .`, que según su documentación (https://pkg.go.dev/cmd/gofmt) solo analiza la sintaxis de los ficheros `.go`: con `-e` muestra todos los errores de sintaxis y con `-l` solo imprime el nombre de los ficheros, sin modificar nada.
+
+Para comprobar que hace lo que necesito, he entrado en un contenedor limpio con la imagen oficial de Go (`golang:1.27.3`) y he creado a mano tres ficheros de prueba, lanzando cada vez `gofmt -e -l .` y mirando después el código de salida con `echo $?`, que es 0 si la orden ha ido bien y otro número si ha fallado.
+
+Primero he creado un fichero correcto, con una función que suma dos números, y `gofmt` no ha mostrado nada y ha terminado con código 0.
+
+![gofmt con un fichero correcto](../imgs/check-correcto.png)
+
+Después he añadido otro fichero con un error de sintaxis, una función a la que le falta la llave de cierre, y esta vez `gofmt` ha mostrado el error indicando el fichero y la línea, y ha terminado con código 2, por lo que la tarea `check` fallaría, que es lo que quiero cuando hay un error.
+
+![gofmt con un error de sintaxis](../imgs/check-sintaxis.png)
+
+Por último he borrado ese fichero y he creado otro con un error de tipos, una función que tiene que devolver un número pero devuelve un texto. En este caso `gofmt` no ha dicho nada y ha terminado con código 0, porque la sintaxis es correcta y el error es de tipos, lo que confirma que solo comprueba la sintaxis.
+
+![gofmt con un error de tipos](../imgs/check-tipos.png)
+
