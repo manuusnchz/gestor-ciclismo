@@ -172,3 +172,9 @@ Para medir la ejecución he lanzado `1build check` tres veces en otro contenedor
 
 ![Ejecución de check con 1build](../imgs/ejecucion-1build.png)
 
+#### taskctl
+
+taskctl (https://github.com/taskctl/taskctl) tampoco viene en la imagen. Para Linux, su README oficial dice que se instala descargando el fichero `taskctl_linux_amd64` desde su última versión publicada. Al hacerlo, GitHub redirige a la versión 1.4.2, que es de abril de 2021 y sigue siendo la última versión estable, y la descarga falla con un error 404 porque ese fichero no existe en esa versión. Como consecuencia, `taskctl` no llega a instalarse, por lo que como no puedo probarlo, queda descartado.
+
+![Prueba de taskctl](../imgs/prueba-taskctl.png)
+
