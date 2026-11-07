@@ -130,3 +130,13 @@ Para medir la ejecución he lanzado `make -f Makefile.prueba check` tres veces e
 
 ![Ejecución de check con make](../imgs/ejecucion-make.png)
 
+#### Task
+
+Task (https://github.com/go-task/task) no viene en la imagen, así que hay que instalarlo aparte. He usado el script de instalación que da su documentación oficial (https://taskfile.dev/installation/), que busca la última versión en GitHub. La instalación ha tardado 3,874 s y ha instalado la versión 3.54.0. He creado un `Taskfile.yml` con las tareas `install` y `check`, las dos se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que Task también cumple los dos primeros criterios, pero necesita descargar el programa cada vez que se parte de una máquina limpia.
+
+![Prueba de Task](../imgs/prueba-task.png)
+
+Para medir la ejecución he lanzado `task check` tres veces en otro contenedor limpio, y ha tardado 0,102 s, 0,088 s y 0,088 s, así que Task sí añade algo de tiempo cada vez que se ejecuta una tarea.
+
+![Ejecución de check con Task](../imgs/ejecucion-task.png)
+
