@@ -70,57 +70,21 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Milestones](docs/milestones.md)
 * [Referencia a persona](docs/personas.md)
 
-* [Herramientas de automatización](docs/gestores.md)
+## Cómo usar el proyecto
 
-## Gestor de tareas
+Las tareas del proyecto están en el [`Makefile`](Makefile) y se lanzan con make. Por qué he elegido make y los módulos de Go está explicado en [Herramientas de automatización](docs/gestores.md).
 
-`go` no tiene ningún fichero donde poner las tareas ni una orden `check`, así
-que hay que acordarse de cada orden y escribirla a mano (#24). Las tareas
-son pocas (instalar, comprobar que compila y más adelante los tests) y todas
-lanzan una orden de `go`.
+Para usarlo hace falta Go 1.27.3 (la versión que fija el `go.mod`) y make, que ya viene en la imagen oficial de Go.
 
-Criterios: que no añada dependencias al módulo, porque ahora no tiene
-ninguna y cada una que entra hay que mantenerla al día; que siga mantenido
-o esté estandarizado, para que el fichero no se quede sin soporte; y que el
-fichero de tareas no dependa de un programa concreto.
+Para instalar las dependencias del proyecto:
 
-| Opción         | Añade dependencias a `go.mod` | Mantenido        | Fichero estándar             |
-|----------------|-------------------------------|------------------|------------------------------|
-| make           | No                            | Estable: última versión 4.4.1 (2023), pero lo define POSIX | Sí, POSIX ([IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)) |
-| Task           | No                            | Sí (v3.54.0)     | No, `Taskfile.yml` propio    |
-| just           | No                            | Sí (1.59.0)      | No, `justfile` propio        |
-| Mage           | Sí si se usa su paquete `mg`; si no, hay que instalar `mage` aparte | Sí | No, `magefile.go` solo lo entiende `mage` |
-| goyek          | Sí, es una biblioteca que hay que importar | Sí  | No, es un programa Go propio |
-| Earthly (sistema de construcción)        | No | No, ya no se mantiene activamente | No, `Earthfile` propio       |
-| Bazel / Please (sistemas de construcción) | No | Sí                                | No, ficheros `BUILD` propios |
+    make install
 
-Earthly, Bazel y Please no son gestores de tareas, sino sistemas de
-construcción pensados para proyectos grandes y con varios lenguajes. Para
-dos tareas que solo lanzan una orden de `go` serían sobreingeniería, y
-además ninguno cumple el tercer criterio.
+La entidad del proyecto es `Carrera`, en [`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una carrera por su nombre y, de cada año que se ha corrido, los puntos que sacó cada corredor o si no participó. Es de donde el servicio sacará el rendimiento de cada corredor en esa carrera para ayudar a Alfonso, el director deportivo (ver [personas](docs/personas.md)), a elegir la plantilla.
 
-make es la única opción que cumple los tres criterios. No saca versiones
-desde 2023, pero el [`Makefile`](Makefile) solo usa lo que define POSIX, así
-que funciona con cualquier make y no depende de versiones nuevas. Si no lo
-tienes instalado:
-
-* Debian/Ubuntu: `sudo apt install make`
-* Fedora: `sudo dnf install make`
-* macOS: `xcode-select --install` (lo trae con las herramientas de línea de órdenes)
-* Windows: dentro de WSL, igual que en Linux, o `choco install make`
-
-La entidad del proyecto es `Carrera`, en
-[`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una
-carrera por su nombre y, de cada año que se ha corrido, los puntos que sacó
-cada corredor o si no participó. Es de donde el servicio sacará el
-rendimiento de cada corredor en esa carrera para ayudar a Alfonso a
-elegir la plantilla.
-
-Para comprobar que el código compila:
+Para comprobar que la sintaxis de los fuentes, incluida la entidad, es correcta:
 
     make check
 
-Esta orden solo ejecuta `go build ./...`, que compila todos los paquetes
-del módulo, incluida la entidad. No compila los ficheros `_test.go` (ahora
-no hay ninguno), no pasa tests, ni linter, ni mira el formato. Los tests
-irán en su propia tarea cuando los haya.
+Esta orden ejecuta `gofmt -e -l .`, que analiza la sintaxis de todos los ficheros `.go` del proyecto sin compilarlos ni modificarlos. Si alguno tiene un error de sintaxis, muestra el fichero, la línea y la columna, y falla. Si solo está mal formateado, lo lista, pero no falla.
+
