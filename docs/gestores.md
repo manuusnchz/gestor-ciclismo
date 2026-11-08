@@ -73,6 +73,10 @@ Antes de hacer pruebas, descarto las opciones que no cumplen algún criterio de 
 
 ![Último commit de mmake y gilbert](../imgs/mantenimiento-descartadas.png)
 
+En cambio, Task, just, Mage, 1build, xc y rex sí tienen commits en el último año:
+
+![Último commit de Task, just, Mage, 1build, xc y rex](../imgs/mantenimiento-github.png)
+
 Pruebo el resto que si cumplen los criterios a priori: make, Task, just, Mage, 1build, taskctl, xc, goyek y rex. Antes de eso, compruebo si con `go` solo es suficiente.
 
 ### `go` solo
