@@ -58,10 +58,8 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 ## Estado del proyecto
 
 * **Objetivo 0**: completado (problema identificado, repositorio configurado).
-* **Objetivo 1**: completado (jornada de usuario, historias de usuario y
-  milestones iniciales definidos).
-* **Objetivo 2**: completado (modelo de HU001 en Go).
-* **Objetivo 3**: automatización de tareas con make y los módulos de Go.
+* **Objetivo 1**: planificación del proyecto — jornada de usuario, historias de
+  usuario y milestones iniciales definidos.
 
 ## Documentación adicional
 
@@ -74,15 +72,13 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 
 Las tareas del proyecto están en el [`Makefile`](Makefile) y se lanzan con make. Por qué he elegido make y los módulos de Go está explicado en [Herramientas de automatización](docs/gestores.md).
 
-Para usarlo hace falta Go 1.27.3 (la versión que fija el `go.mod`) y make, que ya viene en la imagen oficial de Go.
+Para usarlo hace falta Go 1.27.3 (la versión que fija el `go.mod`) y make.
 
 Para instalar las dependencias del proyecto:
 
     make install
 
-La entidad del proyecto es `Carrera`, en [`internal/ranking/carrera.go`](internal/ranking/carrera.go). Guarda una carrera por su nombre y, de cada año que se ha corrido, los puntos que sacó cada corredor o si no participó. Es de donde el servicio sacará el rendimiento de cada corredor en esa carrera para ayudar a Alfonso, el director deportivo (ver [personas](docs/personas.md)), a elegir la plantilla.
-
-Para comprobar que la sintaxis de los fuentes, incluida la entidad, es correcta:
+Para comprobar que la sintaxis de los fuentes es correcta:
 
     make check
 
