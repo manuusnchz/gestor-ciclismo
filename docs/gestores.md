@@ -71,6 +71,8 @@ Antes de hacer pruebas, descarto las opciones que no cumplen algún criterio de 
 - gob (https://github.com/kcmvp/gob), que es el repositorio que aparece en awesome-go, ya no existe, así que no se puede usar.
 - mmake (https://github.com/tj/mmake) y gilbert (https://github.com/go-gilbert/gilbert) no cumplen el criterio 4: mmake no tiene ningún commit desde marzo de 2020, y gilbert no tiene ninguno desde enero de 2025. Si eligiera cualquiera de las dos, generaria deuda técnica.
 
+![Último commit de mmake y gilbert](../imgs/mantenimiento-descartadas.png)
+
 Pruebo el resto que si cumplen los criterios a priori: make, Task, just, Mage, 1build, taskctl, xc, goyek y rex. Antes de eso, compruebo si con `go` solo es suficiente.
 
 ### `go` solo
