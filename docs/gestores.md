@@ -36,15 +36,15 @@ Para medir el coste de instalación y el de ejecución he usado un contenedor Do
 
 ![go version, go list -m all y go mod verify](../imgs/prueba2.png)
 
-- `time go mod download`, tres veces, cada una en un contenedor nuevo, para medir el coste de ejecución: es la orden que instala las dependencias que declara `go.mod`. Las tres veces responde "no module dependencies to download" y tarda 0,008 s, 0,007 s y 0,007 s.
+- `time go mod download`, tres veces, cada una en un contenedor nuevo: es la orden que instala las dependencias que declara `go.mod`. Las tres veces responde "no module dependencies to download" y tarda 0,008 s, 0,007 s y 0,007 s, porque no tiene nada que descargar.
 
 ![Tiempos de go mod download](../imgs/prueba1.png)
 
-Ahora mismo instalar las dependencias no cuesta prácticamente nada porque el proyecto solo usa la biblioteca estándar. Este tiempo cambiará cuando se añada alguna dependencia a `go.mod`.
+Por tanto, esta medida no sirve todavía para saber cuánto cuesta instalar dependencias con los módulos de Go: el proyecto solo usa la biblioteca estándar y la orden no tiene nada que descargar.
 
 ### Decisión final
 
-Los módulos de Go son la única herramienta que cumple los dos criterios obligatorios: son el estándar de Go y funcionan con la versión del proyecto. Además, no hay que instalar nada aparte de Go y ahora mismo instalar las dependencias tarda unos 0,007 s. Por eso elijo los módulos de Go como gestor de dependencias.
+Los módulos de Go son la única herramienta que cumple los dos criterios obligatorios: son el estándar de Go y funcionan con la versión del proyecto. Además, no hay que instalar nada aparte de Go y, por ahora, el proyecto no tiene dependencias que descargar. Por eso elijo los módulos de Go como gestor de dependencias.
 
 ## Gestor de tareas
 
