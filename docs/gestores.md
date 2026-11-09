@@ -65,13 +65,10 @@ Pruebo make, Task, just, Mage, 1build, taskctl, xc, goyek, rex y gilbert.
 
 #### make
 
-make ya viene instalado en la imagen oficial de Go, así que no hay que instalar nada aparte. He creado un Makefile con las tareas `install` y `check`, las dos se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que make cumple los dos primeros criterios y no cuesta nada tenerlo funcionando. 
+make no hay que instalarlo, ya que lo tengo instalado (GNU Make 4.4.1). `make check` ha tardado 0,036 s, 0,014 s y 0,015 s.
 
-![Prueba de make](../imgs/prueba-make.png)
+![make](../imgs/make.png)
 
-Para medir la ejecución he lanzado `make -f Makefile.prueba check` tres veces en otro contenedor limpio, y ha tardado 0,012 s, 0,010 s y 0,011 s, prácticamente lo mismo que lanzar `gofmt` directamente, así que make no añade casi nada al ejecutar la tarea.
-
-![Ejecución de check con make](../imgs/ejecucion-make.png)
 
 #### Task
 
