@@ -117,6 +117,12 @@ rex (https://github.com/rexrun-dev/rex) hay que instalarlo. Las tareas se escrib
 
 ![rex](../imgs/rex.png)
 
+#### gilbert
+
+gilbert (https://github.com/go-gilbert/gilbert) hay que instalarlo. Las tareas se escriben en un fichero `gilbert.yaml` y se lanzan con `gilbert run`. Con el script de su guía oficial (https://go-gilbert.github.io/docs/quick-start/), la instalación ha tardado 2,964 s y ha instalado la versión 1.1.0. `gilbert run check` ha tardado 0,020 s, 0,020 s y 0,023 s.
+
+![gilbert](../imgs/gilbert.png)
+
 ### Decisión final
 
 Después de las pruebas , descarto `go` porque no cumple el criterio 1, taskctl porque no se puede instalar con el método de su documentación, y goyek porque añade dependencias a `go.mod` (criterio 2). make, Task, just, Mage, 1build, xc y rex cumplen los dos criterios obligatorios y todas tienen commits en el último año, así que tampoco las separa la deuda técnica (criterio 4). Lo que decide es el criterio 5: make ya viene en la imagen oficial de Go, así que no hay que instalar nada aparte, mientras que las demás tardan en instalarse entre los 0,584 s de xc y los 8,375 s de rex. Al lanzar `check`, make tarda lo mismo que `gofmt` directamente, mientras que Task tarda unos 80 ms más cada vez y Mage unos 370 ms más la primera vez, porque tiene que compilar el `magefile.go`. Por eso elijo make, con un Makefile en la raíz del repositorio con las tareas `install` y `check`.
