@@ -89,13 +89,9 @@ Mage (https://github.com/magefile/mage) hay que instalarlo. Las tareas se escrib
 
 #### 1build
 
-1build (https://github.com/gopinath-langote/1build) tampoco viene en la imagen. He descargado el programa ya compilado desde su última versión publicada. La descarga y la instalación han tardado 1,026 s y han instalado la versión 1.10.4. He creado un `1build.yaml` con el nombre del proyecto y las órdenes `install` y `check`, las dos se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que 1build también cumple los dos primeros criterios, pero necesita descargar el programa cada vez que se parte de una máquina limpia.
+1build (https://github.com/gopinath-langote/1build) hay que instalarlo. Descargando el programa ya compilado de su última versión publicada, como indica su README, la instalación ha tardado 1,514 s y ha instalado la versión 1.10.4. `1build check` ha tardado 0,014 s, 0,016 s y 0,016 s.
 
-![Prueba de 1build](../imgs/prueba-1build.png)
-
-Para medir la ejecución he lanzado `1build check` tres veces en otro contenedor limpio, y ha tardado 0,013 s, 0,011 s y 0,011 s, prácticamente lo mismo que lanzar `gofmt` directamente.
-
-![Ejecución de check con 1build](../imgs/ejecucion-1build.png)
+![1build](../imgs/1build.png)
 
 #### taskctl
 
