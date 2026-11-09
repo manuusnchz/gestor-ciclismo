@@ -55,9 +55,7 @@ Los módulos de Go son la única herramienta que cumple los dos criterios obliga
 
 ### Opciones
 
-Para buscar las opciones he buscado en "Build Automation" dentro del repo awesome-go (https://github.com/avelino/awesome-go#build-automation), que es la lista que mantiene la comunidad de Go con las herramientas de cada categoría, y he mirado el repositorio de cada una de las que aparecen. A esas les he sumado just (https://github.com/casey/just), que no aparece en la lista porque no está escrita en Go, pero sirve para cualquier lenguaje, y make.
-
-El estándar del propio lenguaje es `go`. En el link que se deja en el guión (https://jj.github.io/curso-tdd/temas/gestores-tareas.html) se explica que "Go es un ejemplo de lenguaje que usa task runner implícito: como subcomandos de go se compila, se pasan tests o se instala un paquete". Por el criterio del estándar, es lo primero que compruebo: si con `go` bastara, no haría falta añadir nada al proyecto.
+He buscado las opciones en "Build Automation" dentro del repo awesome-go (https://github.com/avelino/awesome-go#build-automation). Como en esa sección no todo lo que hay son gestores de tareas me he quedado solo con las que sirven para escribir tareas en un fichero y lanzarlas. A esas les he sumado just (https://github.com/casey/just), que no aparece en la lista porque no está escrita en Go, pero sirve para cualquier lenguaje, y make.
 
 Antes de hacer pruebas, descarto las opciones que no cumplen algún criterio de los antes definidos:
 
