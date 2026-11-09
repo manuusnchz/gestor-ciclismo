@@ -61,19 +61,6 @@ De esa sección quedan fuera air, anko, gaper y realize, que sirven para recarga
 
 Pruebo make, Task, just, Mage, 1build, taskctl, xc, goyek, rex y gilbert.
 
-### `go` solo
-
-Para comprobar si `go`, el estándar del lenguaje, cumple el criterio 1, he ejecutado `go help` en un contenedor con la imagen oficial de Go, que muestra todos los subcomandos de `go`. Al revisarlos no he encontrado ninguno que lea un fichero de tareas: `go` solo ejecuta las tareas que trae de fábrica, como `build`, `test` o `vet`, y no se pueden añadir tareas propias con el nombre que yo quiera.
-
-![Subcomandos de go help](../imgs/go-help.png)
-
-Por si acaso, he intentado ejecutar también `go check`, y me da el error "go check: unknown command" por lo que tampoco existe la tarea `check` que necesito.
-
-![Error de go check](../imgs/go-check.png)
-
-Como `go` no tiene un fichero donde estén escritas las tareas del proyecto ni permite lanzar `check`, no cumple el criterio 1 y queda descartado.
-
-
 ### Qué hace la tarea `check`
 
 Antes de probar las herramientas he decidido qué orden va a lanzar la tarea `check`, porque va a ser la misma en todas las pruebas. Esta tarea tiene que comprobar que la sintaxis de los fuentes es correcta y solo eso, así que no me sirve `go build`, que es lo que tenía antes: compila el código y tiene efectos secundarios, porque genera resultados de la compilación.
