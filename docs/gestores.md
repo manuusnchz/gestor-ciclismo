@@ -77,13 +77,9 @@ Task (https://github.com/go-task/task) hay que instalarlo. Con el script de su d
 
 #### just
 
-just (https://github.com/casey/just) tampoco viene en la imagen. Para instalarlo he usado el script que da su README oficial en el apartado "Pre-built Binaries", que, igual que el de Task, descarga el programa ya compilado desde GitHub. La instalación ha tardado 1,471 s y ha instalado la versión 1.59.0. He creado un `justfile` con las tareas `install` y `check`, las dos se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que just también cumple los dos primeros criterios, pero, como Task, necesita descargar el programa cada vez que se parte de una máquina limpia.
+just (https://github.com/casey/just) hay que instalarlo. Con el script del apartado "Pre-built Binaries" de su README, la instalación ha tardado 6,317 s y ha instalado la versión 1.59.0. `just check` ha tardado 0,013 s, 0,015 s y 0,017 s.
 
-![Prueba de just](../imgs/prueba-just.png)
-
-Para medir la ejecución he lanzado `just check` tres veces en otro contenedor limpio, y ha tardado 0,027 s, 0,016 s y 0,013 s, solo unos milisegundos más que lanzar `gofmt` directamente.
-
-![Ejecución de check con just](../imgs/ejecucion-just.png)
+![just](../imgs/just.png)
 
 #### Mage
 
