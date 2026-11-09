@@ -107,9 +107,9 @@ xc (https://github.com/joerdav/xc) hay que instalarlo. Las tareas se escriben en
 
 #### goyek
 
-goyek (https://github.com/goyek/goyek) no es un programa que se instale, sino una biblioteca de Go: las tareas se escriben en Go en una carpeta `build/` que importa goyek, y se lanzan con `go run`. He seguido los pasos de su README: he creado `build/main.go` con las tareas `install` y `check` y he ejecutado `go mod tidy`, que es lo que hace de instalación y ha tardado 2,794 s. Las dos tareas se han ejecutado correctamente, pero `go mod tidy` ha añadido a `go.mod` dos dependencias directas, `github.com/goyek/goyek/v3` y `github.com/goyek/x`, y otras indirectas que estas necesitan. Como no cumple el segundo criterio, goyek queda descartado.
+goyek (https://github.com/goyek/goyek) no es un programa, sino una biblioteca de Go: las tareas se escriben en Go en una carpeta `build/` y se lanzan con `go run`. Siguiendo su README, la instalación es `go mod tidy`, que ha tardado 3,847 s y ha descargado la versión 3.0.1. `go run . check` ha tardado 0,727 s, 0,087 s y 0,102 s; la primera vez tarda más porque compila antes la carpeta `build/`.
 
-![Prueba de goyek](../imgs/prueba-goyek.png)
+![goyek](../imgs/goyek.png)
 
 #### rex
 
