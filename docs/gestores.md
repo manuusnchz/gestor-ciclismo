@@ -50,14 +50,8 @@ Los módulos de Go son la única herramienta que cumple los dos criterios obliga
 
 ### Criterios
 
-Sigo los mismos criterios generales del guion que para el gestor de dependencias. Los dos primeros son obligatorios; entre las herramientas que los cumplan, deciden la deuda técnica y lo que cuesta tenerlas funcionando:
-
-1. **Fichero de tareas**: que tenga un fichero donde estén escritas las tareas del proyecto y desde el que se puedan lanzar al menos `install` y `check`.
-2. **Sin dependencias nuevas**: que no añada dependencias a `go.mod`, porque ahora no tiene ninguna y cada una que entra hay que mantenerla. Lo compruebo mirando si `go.mod` cambia después de usarla.
-3. **Estándar**: el guion dice que "Si hay un estándar, primero hay que conocerlo; a continuación simplemente hay que seguirlo". El estándar de Go es `go`, así que es lo primero que compruebo. Si no cumple los criterios obligatorios, no hay un estándar que seguir y deciden los criterios 4 y 5.
-4. **Deuda técnica**: según el guion, "si elegimos una herramienta que no se mantiene con asiduidad estaremos aumentando la deuda técnica", porque más adelante habría que cambiarla. Lo compruebo mirando si su repositorio ha tenido algún commit en el último año.
-5. **Coste de instalación y de ejecución**: qué hay que instalar aparte de Go, cuánto tarda y cuánto tarda después en lanzar `check`.
-
+1. **Tiempo de instalación**: qué hay que instalar aparte de Go y cuánto tarda.
+2. **Tiempo de ejecución**: cuánto tarda en lanzar la tarea `check`.
 
 ### Opciones
 
