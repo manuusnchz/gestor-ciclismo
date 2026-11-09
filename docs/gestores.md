@@ -57,19 +57,9 @@ Los módulos de Go son la única herramienta que cumple los dos criterios obliga
 
 He buscado las opciones en "Build Automation" dentro del repo awesome-go (https://github.com/avelino/awesome-go#build-automation). Como en esa sección no todo lo que hay son gestores de tareas me he quedado solo con las que sirven para escribir tareas en un fichero y lanzarlas. A esas les he sumado just (https://github.com/casey/just), que no aparece en la lista porque no está escrita en Go, pero sirve para cualquier lenguaje, y make.
 
-Antes de hacer pruebas, descarto las opciones que no cumplen algún criterio de los antes definidos:
+De esa sección quedan fuera air, anko, gaper y realize, que sirven para recargar la aplicación mientras se desarrolla, y gob, cuyo repositorio ya no existe. mmake no lo pruebo porque, según su README, funciona por encima de make, así que no es una alternativa a make.
 
-- air (https://github.com/air-verse/air), anko (https://github.com/GuilhermeCaruso/anko), gaper (https://github.com/maxcnunes/gaper) y realize (https://github.com/oxequa/realize) no cumplen el criterio 1. Según la descripción de sus repositorios, vigilan los ficheros y vuelven a compilar o reiniciar la aplicación cuando cambian por lo que sirven para recargar la aplicación mientras se desarrolla, no para escribir tareas como `install` o `check` en un fichero y lanzarlas.
-- gob (https://github.com/kcmvp/gob), que es el repositorio que aparece en awesome-go, ya no existe, así que no se puede usar.
-- mmake (https://github.com/tj/mmake) y gilbert (https://github.com/go-gilbert/gilbert) no cumplen el criterio 4: mmake no tiene ningún commit desde marzo de 2020, y gilbert no tiene ninguno desde enero de 2025. Si eligiera cualquiera de las dos, generaria deuda técnica.
-
-![Último commit de mmake y gilbert](../imgs/mantenimiento-descartadas.png)
-
-En cambio, Task, just, Mage, 1build, xc y rex sí tienen commits en el último año:
-
-![Último commit de Task, just, Mage, 1build, xc y rex](../imgs/mantenimiento-github.png)
-
-Pruebo el resto que si cumplen los criterios a priori: make, Task, just, Mage, 1build, taskctl, xc, goyek y rex. Antes de eso, compruebo si con `go` solo es suficiente.
+Pruebo make, Task, just, Mage, 1build, taskctl, xc, goyek, rex y gilbert.
 
 ### `go` solo
 
