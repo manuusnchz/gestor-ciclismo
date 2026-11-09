@@ -113,13 +113,9 @@ goyek (https://github.com/goyek/goyek) no es un programa, sino una biblioteca de
 
 #### rex
 
-rex (https://github.com/rexrun-dev/rex) no viene en la imagen. Lo he instalado con `go install` , igual que con Mage, que ha tardado 8,375 s en descargarlo y compilarlo, y ha instalado la versión 0.5.0. Las tareas se escriben en un fichero `rex.toml`, en la sección `[commands]`. Según su README, si el proyecto ya tiene un Makefile, rex lo usa antes que su propio fichero, así que en la copia del contenedor he borrado el Makefile para probar de verdad rex y no make. Las dos tareas se han ejecutado correctamente desde `rex.toml` y `go.mod` no ha cambiado, por lo que rex cumple los dos primeros criterios, pero es la herramienta que más ha tardado en instalarse de todas las que he probado.
+rex (https://github.com/rexrun-dev/rex) hay que instalarlo. Las tareas se escriben en un fichero `rex.toml`, en la sección `[commands]`; según su README, si hay un Makefile lo usa antes, así que lo he probado en una copia del repositorio sin él. Con `go install`, como indica su README, la instalación ha tardado 3,368 s y ha instalado la versión 0.5.0. `rex check` ha tardado 0,011 s, 0,013 s y 0,015 s.
 
-![Prueba de rex](../imgs/prueba-rex.png)
-
-Para medir la ejecución he lanzado `rex check` tres veces en otro contenedor limpio, también sin el Makefile, y ha tardado 0,011 s, 0,009 s y 0,007 s, prácticamente lo mismo que lanzar `gofmt` directamente.
-
-![Ejecución de check con rex](../imgs/ejecucion-rex.png)
+![rex](../imgs/rex.png)
 
 ### Decisión final
 
