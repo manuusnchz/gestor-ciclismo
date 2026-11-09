@@ -83,15 +83,9 @@ just (https://github.com/casey/just) hay que instalarlo. Con el script del apart
 
 #### Mage
 
-Mage (https://github.com/magefile/mage) es distinto a los anteriores, porque las tareas se escriben en Go, en un fichero `magefile.go` donde cada función es una tarea. Tampoco viene en la imagen, así que lo he instalado con `go install github.com/magefile/mage@latest`, que descarga el código fuente y lo compila. La instalación ha tardado 5,032 s y ha instalado la versión 1.17.2.
+Mage (https://github.com/magefile/mage) hay que instalarlo. Las tareas se escriben como funciones de Go en un fichero `magefile.go`. Con `go install`, la instalación ha tardado 3,137 s y ha instalado la versión 1.17.2. `mage check` ha tardado 0,240 s, 0,120 s y 0,118 s; la primera vez tarda más porque compila antes el `magefile.go`.
 
-En el `magefile.go` solo he usado la biblioteca estándar de Go para lanzar las órdenes, y no las funciones de ayuda de Mage, porque esas habría que importarlas y añadirían una dependencia a `go.mod`. Así, las dos tareas se han ejecutado correctamente y `go.mod` no ha cambiado, por lo que Mage cumple los dos primeros criterios, pero es la que más cuesta tener funcionando de las que llevo probadas.
-
-![Prueba de Mage](../imgs/prueba-mage.png)
-
-Para medir la ejecución he lanzado `mage check` tres veces en otro contenedor limpio, y ha tardado 0,377 s, 0,097 s y 0,097 s. La primera vez es mucho más lenta porque Mage compila antes el `magefile.go`. Las otras dos siguen tardando unos 90 ms más que lanzar `gofmt` directamente.
-
-![Ejecución de check con Mage](../imgs/ejecucion-mage.png)
+![Mage](../imgs/mage.png)
 
 #### 1build
 
