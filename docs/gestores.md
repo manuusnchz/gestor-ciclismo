@@ -101,13 +101,9 @@ taskctl (https://github.com/taskctl/taskctl) hay que instalarlo. El método para
 
 #### xc
 
-xc (https://github.com/joerdav/xc) tampoco viene en la imagen. La forma de instalarlo que da su guía oficial (https://xcfile.dev/getting-started/#installation) es descargar el programa ya compilado desde sus versiones publicadas en GitHub. La descarga ha tardado 0,584 s y ha instalado la versión 0.9.0. Lo distinto de xc es que las tareas se escriben en un fichero Markdown, bajo un título `## Tasks`, con cada tarea como un subtítulo y su orden en un bloque de código. Por defecto las busca en el `README.md`, pero para la prueba he usado un fichero aparte, `tareas.md`. Las dos tareas se han ejecutado correctamente desde el fichero y `go.mod` no ha cambiado, por lo que xc también cumple los dos primeros criterios, pero necesita descargar el programa cada vez que se parte de una máquina limpia.
+xc (https://github.com/joerdav/xc) hay que instalarlo. Las tareas se escriben en un fichero Markdown, bajo un título `## Tasks`. Descargando el programa ya compilado, como indica su guía oficial (https://xcfile.dev/getting-started/#installation), la instalación ha tardado 0,916 s y ha instalado la versión 0.9.0. `xc -f tareas.md check` ha tardado 0,018 s, 0,017 s y 0,017 s.
 
-![Prueba de xc](../imgs/prueba-xc.png)
-
-Para medir la ejecución he lanzado `xc -f tareas.md check` tres veces en otro contenedor limpio, y ha tardado 0,016 s, 0,010 s y 0,009 s, prácticamente lo mismo que lanzar `gofmt` directamente.
-
-![Ejecución de check con xc](../imgs/ejecucion-xc.png)
+![xc](../imgs/xc.png)
 
 #### goyek
 
