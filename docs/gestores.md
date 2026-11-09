@@ -95,9 +95,9 @@ Mage (https://github.com/magefile/mage) hay que instalarlo. Las tareas se escrib
 
 #### taskctl
 
-taskctl (https://github.com/taskctl/taskctl) tampoco viene en la imagen. Para Linux, su README oficial dice que se instala descargando el fichero `taskctl_linux_amd64` desde su última versión publicada. Al hacerlo, GitHub redirige a la versión 1.4.2, que es de abril de 2021 y sigue siendo la última versión estable, y la descarga falla con un error 404 porque ese fichero no existe en esa versión. Como consecuencia, `taskctl` no llega a instalarse, por lo que como no puedo probarlo, queda descartado.
+taskctl (https://github.com/taskctl/taskctl) hay que instalarlo. El método para Linux de su README da un error 404, porque el fichero que indica no existe en su última versión, así que lo he instalado con el paquete `.deb`, que es la otra forma que da el README. La instalación ha tardado 1,041 s y ha instalado la versión 1.4.2. `taskctl run check` ha tardado 0,017 s, 0,015 s y 0,024 s.
 
-![Prueba de taskctl](../imgs/prueba-taskctl.png)
+![taskctl](../imgs/taskctl.png)
 
 #### xc
 
