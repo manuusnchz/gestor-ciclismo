@@ -61,30 +61,6 @@ De esa sección quedan fuera air, anko, gaper y realize, que sirven para recarga
 
 Pruebo make, Task, just, Mage, 1build, taskctl, xc, goyek, rex y gilbert.
 
-### Qué hace la tarea `check`
-
-Antes de probar las herramientas he decidido qué orden va a lanzar la tarea `check`, porque va a ser la misma en todas las pruebas. Esta tarea tiene que comprobar que la sintaxis de los fuentes es correcta y solo eso, así que no me sirve `go build`, que es lo que tenía antes: compila el código y tiene efectos secundarios, porque genera resultados de la compilación.
-
-He elegido `gofmt -e -l .`, que según su documentación (https://pkg.go.dev/cmd/gofmt) solo analiza la sintaxis de los ficheros `.go`: con `-e` muestra todos los errores de sintaxis y con `-l`  lista los ficheros cuyo formato no coincide con el que dejaría gofmt, sin modificarlos. El codigo de salida solo no es 0 cuando hay errores de sintaxis.
-
-Para comprobar que hace lo que necesito, he entrado en un contenedor limpio con la imagen oficial de Go (`golang:1.27.3`) y he creado a mano cuatro ficheros de prueba, lanzando cada vez `gofmt -e -l .` y mirando después el código de salida con `echo $?`, que es 0 si la orden ha ido bien y otro número si ha fallado.
-
-Primero he creado un fichero correcto, con una función que suma dos números, y `gofmt` no ha mostrado nada y ha terminado con código 0.
-
-![gofmt con un fichero correcto](../imgs/check-correcto.png)
-
-Después he añadido otro fichero con un error de sintaxis, una función a la que le falta la llave de cierre, y esta vez `gofmt` ha mostrado el error indicando el fichero y la línea, y ha terminado con código 2, por lo que la tarea `check` fallaría, que es lo que quiero cuando hay un error.
-
-![gofmt con un error de sintaxis](../imgs/check-sintaxis.png)
-
-Despues he borrado ese fichero y he creado otro con un error de tipos, una función que tiene que devolver un número pero devuelve un texto. En este caso `gofmt` no ha dicho nada y ha terminado con código 0, porque la sintaxis es correcta y el error es de tipos, lo que confirma que solo comprueba la sintaxis.
-
-![gofmt con un error de tipos](../imgs/check-tipos.png)
-
-Por ultimo he borrado ese fichero y he creado otro con la sintaxis correcta pero mal formateado, con espacios de más y la función escrita en una sola línea. Esta vez `gofmt` ha mostrado el nombre del fichero, `feo.go`, pero ha terminado con código 0. Esto quiere decir que un fichero mal formateado aparece en la lista, pero la tarea `check` no falla, y eso es lo que necesito, porque `check` solo tiene que comprobar que la sintaxis es correcta.
-
-![gofmt con un fichero mal formateado](../imgs/check-formato.png)
-
 ### Pruebas
 
 Todas las pruebas las hago igual: en un contenedor limpio con la imagen oficial de Go (`golang:1.27.3`) copio el repositorio, instalo la herramienta midiendo con `time` lo que tarda, creo su fichero de tareas con `install` (`go mod download`) y `check` (`gofmt -e -l .`), lanzo las dos tareas y compruebo con `cmp` que `go.mod` no ha cambiado.
