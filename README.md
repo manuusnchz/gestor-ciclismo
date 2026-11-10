@@ -67,3 +67,20 @@ Las evidencias y capturas de la configuración del entorno (claves SSH e identid
 * [Historias de usuario](docs/historias-de-usuario.md)
 * [Milestones](docs/milestones.md)
 * [Referencia a persona](docs/personas.md)
+
+## Cómo usar el proyecto
+
+Las tareas del proyecto están en el [`Makefile`](Makefile) y se lanzan con make. Por qué he elegido make y los módulos de Go está explicado en [Herramientas de automatización](docs/gestores.md).
+
+Para usarlo hace falta Go 1.27.3 (la versión que fija el `go.mod`) y make.
+
+Para instalar las dependencias del proyecto:
+
+    make install
+
+Para comprobar que la sintaxis de los fuentes es correcta:
+
+    make check
+
+Esta orden ejecuta `gofmt -e -l .`, que analiza la sintaxis de todos los ficheros `.go` del proyecto sin compilarlos ni modificarlos. Si alguno tiene un error de sintaxis, muestra el fichero, la línea y la columna, y falla. Si solo está mal formateado, lo lista, pero no falla.
+
