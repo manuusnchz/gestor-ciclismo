@@ -23,6 +23,15 @@ He buscado las opciones en la sección "Testing Frameworks" del repo awesome-go 
 1. **No escribir en el directorio del código**: igual que en las aserciones, al ejecutar los tests no puede crear ni modificar ficheros dentro del repositorio, o tiene que dejar configurar dónde lo hace. El que no lo cumpla queda fuera.
 2. **Tiempo de ejecución**: cuánto tarda de media en ejecutarse el mismo test escrito con cada uno, medido con hyperfine.
 
+### Opciones
+
+He buscado en la misma sección de awesome-go las que sirven para agrupar los tests en subtests, para escribirlos en estilo BDD o para crear fixtures y funciones que se ejecutan antes o después de cada test o de todos los tests. Además, considero el paquete `testing` de Go, que ya permite agrupar los tests en subtests. Las opciones son:
+
+- El paquete `testing` (https://pkg.go.dev/testing), que viene con Go.
+- De estilo BDD, en los que los tests se escriben de una forma más parecida al lenguaje natural: ginkgo (https://github.com/onsi/ginkgo), GoConvey (https://github.com/smartystreets/goconvey), goblin (https://github.com/franela/goblin), gogiven (https://github.com/corbym/gogiven), gospecify (https://github.com/stesla/gospecify), testcase (https://github.com/adamluzsi/testcase) y biff (https://github.com/fulldump/biff).
+- De estilo BDD con los tests escritos en ficheros de texto aparte (`.feature`): godog (https://github.com/cucumber/godog) y gherkingen (https://github.com/hedhyw/gherkingen).
+- Con fixtures y funciones que se ejecutan antes o después de los tests: gocheck (https://github.com/go-check/check), gosuite (https://github.com/pavlo/gosuite), Testo (https://github.com/ozontech/testo), axiom (https://github.com/Nikita-Filonov/axiom), fixenv (https://github.com/rekby/fixenv) y el paquete `suite` de Testify (https://github.com/stretchr/testify).
+
 ## Herramienta CLI para ejecutar los tests
 
 ### Criterios
