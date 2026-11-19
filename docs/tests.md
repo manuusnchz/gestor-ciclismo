@@ -38,3 +38,11 @@ He buscado en la misma sección de awesome-go las que sirven para agrupar los te
 
 1. **No escribir en el directorio del código**: al lanzar los tests no puede crear ni modificar ficheros dentro del repositorio, o tiene que dejar configurar dónde lo hace. La que no lo cumpla queda fuera.
 2. **Tiempo de ejecución**: cuánto tarda de media en lanzar los tests, medido con hyperfine.
+
+### Opciones
+
+Go ya trae una orden que ejecuta los tests, `go test`. En la misma sección de awesome-go aparecen además una herramienta que trabaja con su salida y dos frameworks que traen su propia orden para ejecutar los tests. Las opciones son:
+
+- `go test` (https://pkg.go.dev/cmd/go#hdr-Test_packages), que viene con Go.
+- tparse (https://github.com/mfridman/tparse), que no ejecuta los tests, sino que recibe la salida de `go test -json` y hace un informe con ella.
+- `ginkgo`, la orden de ginkgo (https://github.com/onsi/ginkgo), y `goconvey`, la de GoConvey (https://github.com/smartystreets/goconvey), que ejecutan los tests desde la terminal o, en el caso de GoConvey, desde el navegador.
