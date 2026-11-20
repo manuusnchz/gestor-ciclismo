@@ -84,3 +84,7 @@ Para comprobar que la sintaxis de los fuentes es correcta:
 
 Esta orden ejecuta `gofmt -e -l .`, que analiza la sintaxis de todos los ficheros `.go` del proyecto sin compilarlos ni modificarlos. Si alguno tiene un error de sintaxis, muestra el fichero, la línea y la columna, y falla. Si solo está mal formateado, lo lista, pero no falla.
 
+Para ejecutar los tests:
+
+    make test
+
