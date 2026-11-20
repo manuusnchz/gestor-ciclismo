@@ -80,3 +80,17 @@ Go ya trae una orden que ejecuta los tests, `go test`. En la misma sección de a
 - `go test` (https://pkg.go.dev/cmd/go#hdr-Test_packages), que viene con Go.
 - tparse (https://github.com/mfridman/tparse), que no ejecuta los tests, sino que recibe la salida de `go test -json` y hace un informe con ella.
 - `ginkgo`, la orden de ginkgo (https://github.com/onsi/ginkgo), y `goconvey`, la de GoConvey (https://github.com/smartystreets/goconvey), que ejecutan los tests desde la terminal o, en el caso de GoConvey, desde el navegador.
+
+### Pruebas
+
+`go test` pasa los tests sin permisos de escritura. tparse no escribe nada porque solo lee la salida de `go test -json`. `ginkgo` falla: compila el binario de los tests (`cli.test`) dentro del directorio del paquete. No tiene ninguna opción para cambiar dónde lo hace, así que lo descarto.
+
+`goconvey` también pasa los tests sin permisos de escritura, pero no lo puedo medir. Arranca un servidor que enseña los resultados en el navegador y no termina hasta que lo paro.
+
+Mido `go test` y tparse con `hyperfine --warmup 3 --runs 30`, esta vez sin `-N`, porque para pasarle la salida de `go test` a tparse hace falta una tubería y eso necesita el shell. `go test` tarda 248,1 ms ± 13,0 ms y `go test -json | tparse` 242,9 ms ± 20,6 ms. tparse sale algo más rápido, pero es ruido: no puede tardar menos, porque ejecuta `go test` y además procesa su salida.
+
+![Medida de las herramientas CLI](../imgs/cli.png)
+
+### Decisión final
+
+Usaré `go test` porque tparse no lo mejora en nada.
