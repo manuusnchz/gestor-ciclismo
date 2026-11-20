@@ -51,6 +51,21 @@ He buscado en la misma sección de awesome-go las que sirven para agrupar los te
 - De estilo BDD con los tests escritos en ficheros de texto aparte (`.feature`): godog (https://github.com/cucumber/godog) y gherkingen (https://github.com/hedhyw/gherkingen).
 - Con fixtures y funciones que se ejecutan antes o después de los tests: gocheck (https://github.com/go-check/check), gosuite (https://github.com/pavlo/gosuite), Testo (https://github.com/ozontech/testo), axiom (https://github.com/Nikita-Filonov/axiom), fixenv (https://github.com/rekby/fixenv) y el paquete `suite` de Testify (https://github.com/stretchr/testify).
 
+### Pruebas
+
+Los pruebo igual que las aserciones, pero esta vez con `--runs 30` desde el principio. gospecify no lo pruebo porque no compila: tiene dos paquetes distintos en el mismo directorio.
+
+Sin permisos de escritura pasan todos.
+
+![Medida de los test runners o frameworks](../imgs/frameworks1.png)
+![Resumen de los test runners o frameworks](../imgs/frameworks2.png)
+
+`testing` tarda 243,1 ms ± 19,2 ms. gherkingen, goblin, biff, axiom y fixenv tardan entre 240,4 ms y 254,7 ms, que con la σ es lo mismo que `testing`. gherkingen da lo mismo que `testing` porque lo único que hace es generar el test desde el fichero `.feature`, y ese test usa `testing`. gosuite, GoConvey, Testo y gocheck tardan entre 271 ms y 288 ms. Los más lentos son gogiven, godog, la suite de Testify, ginkgo y testcase, entre 314 ms y 724 ms.
+
+### Decisión final
+
+Todos cumplen el primer criterio y ninguno tarda menos que `testing`, que ya viene con Go, así que usaré `testing`.
+
 ## Herramienta CLI para ejecutar los tests
 
 ### Criterios
