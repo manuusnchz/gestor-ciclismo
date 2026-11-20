@@ -3,3 +3,4 @@ entidad: internal/ranking/carrera.go
 automatizar:
   fichero: Makefile
   orden: make
+test: internal/ranking/carrera_test.go
