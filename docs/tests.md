@@ -16,6 +16,25 @@ He buscado las opciones en la sección "Testing Frameworks" del repo awesome-go 
 - Bibliotecas con funciones de aserción: assert (https://github.com/go-playground/assert), be (https://github.com/earthboundkid/be), go-testdeep (https://github.com/maxatome/go-testdeep), is (https://github.com/matryer/is), should (https://github.com/Kairum-Labs/should), trial (https://github.com/jgroeneveld/trial), Tt (https://github.com/vcaesar/tt), testza (https://github.com/MarvinJWendt/testza), got (https://github.com/ysmood/got) y los paquetes `assert` de Testify (https://github.com/stretchr/testify) y de gotest.tools (https://github.com/gotestyourself/gotest.tools). testza y got se presentan como frameworks, pero lo que añaden a `testing` son aserciones.
 - Bibliotecas de matchers o de estilo BDD, que se leen más como una frase: gomega (https://github.com/onsi/gomega), gocrest (https://github.com/corbym/gocrest), Hamcrest (https://github.com/rdrdr/hamcrest) y go-testpredicate (https://github.com/maargenton/go-testpredicate).
 
+### Pruebas
+
+Escribo el mismo test, que comprueba una suma, con cada opción en un módulo aparte del repositorio. Hamcrest no lo pruebo porque es de antes de Go 1 y no compila con las versiones de ahora.
+
+Para el primer criterio ejecuto los tests de cada opción sin permisos de escritura en el módulo (`chmod -R a-w`). Pasan todas, así que ninguna escribe en el directorio del código.
+
+Para el segundo mido `go test -count=1` de cada opción con `hyperfine -N --warmup 3`. Pongo `-count=1` para que Go no tire de la caché y ejecute el test cada vez. Uso la media ± σ.
+
+![Medida de las bibliotecas de aserciones](../imgs/aserciones1.png)
+![Resumen de las bibliotecas de aserciones](../imgs/aserciones2.png)
+
+Las más lentas son tt, Testify, got y gomega, que tardan entre 405 ms y 443 ms. No usar ninguna biblioteca, should, trial, assert de go-playground, go-testpredicate, is, be y gocrest tardan entre 248 ms y 267 ms, pero cada una tiene una σ de entre 14 ms y 21 ms, así que no se puede decir cuál es la más rápida. Vuelvo a medir esas 8 con `--runs 30` y quedan todas entre 242,9 ms y 249,0 ms.
+
+![Medida de las 8 más rápidas con 30 ejecuciones](../imgs/aserciones-empate.png)
+
+### Decisión final
+
+Todas cumplen el primer criterio. En el segundo, no usar ninguna biblioteca tarda lo mismo que las más rápidas, así que añadir una no aporta nada. Por eso no uso biblioteca de aserciones.
+
 ## Test runner o framework
 
 ### Criterios
